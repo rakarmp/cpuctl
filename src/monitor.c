@@ -5,7 +5,7 @@
 
 static char *monitor_path = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq";
 
-void monitor_start() {
+void monitor_start(void) {
     while (1) {
         char freq_str[16];
         int freq;
