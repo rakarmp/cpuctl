@@ -1,5 +1,6 @@
 #include "frequency.h"
 #include "sysfs.h"
+#include <stdio.h>
 
 static char *min_freq_path = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq";
 static char *max_freq_path = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq";
