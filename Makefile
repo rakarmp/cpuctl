@@ -1,26 +1,20 @@
 CC=gcc
-CFLAGS=-Wall -Iinclude
+CFLAGS=-Wall -Werror -std=c99 -pedantic -Iinclude
+LDFLAGS=-L. -lsysfs
+SOURCES=src/core.c src/frequency.c src/governor.c src/monitor.c src/sysfs.c
+OBJECTS=$(SOURCES:.c=.o)
+EXECUTABLE=cpuctl
 
-SRC_DIR=src
-INC_DIR=include
-OBJ_DIR=obj
+all: build install
 
-SRC=$(wildcard $(SRC_DIR)/*.c)
-OBJ=$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
+build: $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) $(LDFLAGS) -o $(EXECUTABLE)
 
-all: $(OBJ_DIR) cpuctl
+install: build
+	sudo install $(EXECUTABLE) /usr/local/bin/
 
-$(OBJ_DIR):
-    mkdir -p $@
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-    $(CC) $(CFLAGS) -c $< -o $@
-
-cpuctl: $(OBJ)
-    $(CC) $(CFLAGS) $^ -o $@ -L. -lcpuctl
+.c.o:
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-    rm -rf $(OBJ_DIR) cpuctl libcpuctl.a
-
-install:
-    install cpuctl /usr/local/bin
+	rm -f $(OBJECTS) $(EXECUTABLE)
