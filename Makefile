@@ -1,18 +1,26 @@
 CC=gcc
-CFLAGS=-c -Wall
-LFLAGS=-o
+CFLAGS=-Wall -Iinclude
 
-SOURCES=src/cpu_manager.c src/cpu_info.c src/cpu_control.c
-OBJECTS=$(SOURCES:.c=.o)
-EXECUTABLE=cpu_manager
+SRC_DIR=src
+INC_DIR=include
+OBJ_DIR=obj
 
-all: $(SOURCES) $(EXECUTABLE)
+SRC=$(wildcard $(SRC_DIR)/*.c)
+OBJ=$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
-$(EXECUTABLE): $(OBJECTS)
-    $(CC) $(LFLAGS) $@ $^
+all: $(OBJ_DIR) cpuctl
 
-.c.o:
-    $(CC) $(CFLAGS) $<
+$(OBJ_DIR):
+    mkdir -p $@
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+    $(CC) $(CFLAGS) -c $< -o $@
+
+cpuctl: $(OBJ)
+    $(CC) $(CFLAGS) $^ -o $@ -L. -lcpuctl
 
 clean:
-    rm -f *.o $(EXECUTABLE)
+    rm -rf $(OBJ_DIR) cpuctl libcpuctl.a
+
+install:
+    install cpuctl /usr/local/bin
