@@ -1,5 +1,6 @@
 #include "core.h"
 #include "sysfs.h"
+#include <stdio.h>
 
 static char *core_path = "/sys/devices/system/cpu/cpu";
 
