@@ -36,7 +36,7 @@ The CPU Control Tool (cpuctl) is a Linux-based application written in C that pro
 
 ### Building From Source
 
-1. Clone the repository: git clone `https://github.com/your-username/cpuctl`
+1. Clone the repository: `git clone https://github.com/rakarmp/cpuctl.git`
 2. Change into the repository directory: `cd cpuctl`
 3. Create a build directory: `mkdir build`
 4. Change into the build directory: `cd build`
@@ -45,7 +45,7 @@ The CPU Control Tool (cpuctl) is a Linux-based application written in C that pro
 
 ### Using Makefile
 
-1. Clone the repository: `git clone https://github.com/your-username/cpuctl`
+1. Clone the repository: `git clone https://github.com/rakarmp/cpuctl.git`
 2. Change into the repository directory: `cd cpuctl`
 3. Run the following command to build and install the project: `make && sudo make install`
 
@@ -90,4 +90,4 @@ cpuctl is built on top of the Linux kernel and uses the following open-source li
 
 ## Contact
 
-For questions, comments, or feedback, please contact the maintainer at rakaabdirmp@gmail.com or Telegram `@Zyarexx`.
+For questions, comments, or feedback, please contact the maintainer at rakaabdirmp@gmail.com or Telegram `@Zyarexx`
