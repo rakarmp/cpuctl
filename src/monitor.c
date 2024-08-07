@@ -1,5 +1,6 @@
 #include "monitor.h"
 #include "sysfs.h"
+#include <stdlib.h>
 
 static char *monitor_path = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq";
 
